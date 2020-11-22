@@ -1,65 +1,85 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from 'react'
+import { Typography, makeStyles, Button, Grid, Box, Container } from '@material-ui/core'
+import Layout from '../componentes/corpo/Layout'
+import { ThemeContext } from '../context/GlobalContext'
+import Carregamento from '../componentes/all/Carregamento'
+
+const useStyles = makeStyles(theme => ({
+  fontCustom: {
+    fontWeight: 900,
+    fontSize: '1.8em',
+    marginBottom: '10px',
+    letterSpacing: '0.1em',
+  },
+  fontSub: {
+    fontWeight: 200,
+    fontSize: '1.3em',
+    marginBottom: '50px',
+    letterSpacing: '0.08em',
+  },
+  buttonCustom: {
+    padding: '8px 25px',
+    fontSize: '1.1em',
+  },
+  master: {
+    marginTop: theme.spacing(4),
+  },
+  boxCustom: {
+    padding: '20px',
+  },
+}))
 
 export default function Home() {
+  const classes = useStyles()
+
+  const { loading } = React.useContext(ThemeContext)
+
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <main>
+        <Layout>
+          <Carregamento open={loading} />
+          <section className="cover">
+            <div className="cover-b ">
+              <Typography className={classes.fontCustom}>CANDIDATURA TOTALMENTE GRATUITA</Typography>
+              <Typography className={classes.fontSub}>ENCONTRE A VAGA IDEAL PARA VOCÊ.</Typography>
+              <Button variant="contained" className={classes.buttonCustom} color="primary">Buscar</Button>
+            </div>
+          </section>
+          <section className={classes.master}>
+            <Container>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={12} md={6}>
+                  <Box className={classes.boxCustom} boxShadow={1}>
+                    <Typography color="primary" variant="h6">Encontre um emprego</Typography>
+                    <p>Encontre as melhores oportunidades.</p>
+                    <Box align="right">
+                      <Button variant="outlined" color="primary">BUSCAR VAGA</Button>
+                    </Box>
+                  </Box>
+                </Grid>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+                <Grid item xs={12} sm={12} md={6}>
+                  <Box className={classes.boxCustom} boxShadow={1}>
+                    <Typography color="primary" variant="h6">Anuncie uma vaga</Typography>
+                    <p>Começe seu recrutamento de forma rápida.</p>
+                    <Box align="right">
+                      <Button variant="outlined" color="primary">CADASTRAR EMPRESA</Button>
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Container>
+          </section>
+        </Layout>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      
     </div>
   )
 }
