@@ -3,6 +3,8 @@ import axios from 'axios';
 export const Auth = async (username, password) => {
   const link = 'https://localhost:44369/api/auth/login';
 
+  let resp;
+
   const data = {
     username: username,
     password: password
@@ -16,16 +18,15 @@ export const Auth = async (username, password) => {
       }
 
     }).then(function (response) {
-      localStorage.setItem('userconfig', JSON.stringify(response.data))
+      resp = response
     });
     
   } 
   catch (ex) {
-    return ex.response.status;
+    resp = ex.response;
   }
 
-  return 200;
-
+  return resp;
 }
 
 export const Register = async (user) => {

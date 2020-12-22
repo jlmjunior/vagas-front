@@ -34,7 +34,6 @@ const LoginMenu = (props) => {
 
   const Logout = () => {
     setLoading(true)
-    localStorage.removeItem('userconfig')
     setUserConfig(null)
     setLoading(false)
   }

@@ -5,7 +5,6 @@ import Head from 'next/head';
 import React from 'react';
 import theme from './temaConfig'
 import GlobalContext from '../context/GlobalContext'
-import Carregamento from '../componentes/all/Carregamento';
 
 export default class MyApp extends App {
   componentDidMount() {
@@ -26,7 +25,6 @@ export default class MyApp extends App {
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         </Head>
         <GlobalContext>
-          <Carregamento />
           <ThemeProvider theme={theme}>
             <Component {...pageProps} />
           </ThemeProvider>

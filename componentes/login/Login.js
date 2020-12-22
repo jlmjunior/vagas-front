@@ -26,13 +26,13 @@ const Login = (props) => {
     props.onClose()
     setLoading(true)
     let response = await Api.Auth(username, password)
-
-    console.log(response)
+    
     setLoading(false)
 
-    if (response === 200) {
-      setUserConfig(JSON.parse(localStorage.getItem('userconfig')))
-    } else if (response === 401) {
+    if (response.status === 200) {
+      console.log(response)
+      setUserConfig(response.data)
+    } else if (response.status === 401) {
       props.setError('Usuário ou senha incorreto')
       props.setAlert(true)
     }
