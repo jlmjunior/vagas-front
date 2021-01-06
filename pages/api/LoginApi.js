@@ -12,11 +12,11 @@ export const Auth = async (username, password) => {
 
   try {
     await axios.post(link, data, {
-
       headers: {
-        'Content-Type': 'application/json'
-      }
-
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }, 
+      withCredentials: true
     }).then(function (response) {
       resp = response
     });
